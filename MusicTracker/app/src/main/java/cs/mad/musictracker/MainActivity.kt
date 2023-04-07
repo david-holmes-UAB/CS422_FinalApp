@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
+        // Home should display a normal welcome screen (populated by user data?)
+        // Users (nav_dashboard) should display aa list of linked profiles with an option to add another (maybe?)
+        // Search (nav_notifications) lets a user search an artist
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
