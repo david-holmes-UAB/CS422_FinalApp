@@ -46,7 +46,17 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.room:room-ktx:2.5.1'
+    implementation fileTree(dir: 'C:\\Users\\leeda\\Downloads\\android-sdk-master\\android-sdk-master\\app-remote-lib', include: ['*.aar', '*.jar'], exclude: [])
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation "com.google.code.gson:gson:2.8.9"
+    //2.6.1
+
+    implementation 'com.spotify.android:auth:1.2.5' // Maven dependency
+
+    // All other dependencies for your app should also be here:
+    implementation 'androidx.browser:browser:1.0.0'
+    implementation "androidx.appcompat:appcompat:1.4.1"
 }
