@@ -10,26 +10,34 @@
         android:id="@+id/greeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:padding="30dp"
+        android:paddingTop="5dp"
         android:text="Welcome to MusicTracker."
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Title for top 5 songs-->
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/topFive_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/greeting"
+        android:padding="11dp"
+        android:text="Your Top Five Songs:"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <!--Show top 5 songs-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/topFive_View"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/topFive_title"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/song_obj"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
