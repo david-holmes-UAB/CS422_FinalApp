@@ -8,9 +8,13 @@ import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
 
 import android.util.Log;
+import android.view.LayoutInflater
 import android.view.View
 import cs.mad.musictracker.bases.SpotifyAuthenticator
 import cs.mad.musictracker.bases.SpotifyConnector
+import cs.mad.musictracker.bases.TopSongAdapter
+import cs.mad.musictracker.databinding.ActivityMainBinding
+
 //import kotlin.collections.joinToString
 
 
@@ -24,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var spotifyConnector: SpotifyConnector
     private lateinit var spotifyAuthenticator: SpotifyAuthenticator
+    private lateinit var binding
+
 
     data class TopSong(
         val track: String,
@@ -73,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
              */
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
         //spotifyConnector = SpotifyConnector(this, "671cc4720b4f420397ecd146b7eb09b1", "https://com.spotify.android.spotifysdkkotlindemo/callback")
@@ -83,6 +90,10 @@ class MainActivity : AppCompatActivity() {
         //val auth: View = findViewById(R.id.authButton)
         //auth.setOnClickListener {spotifyAuthenticator.authenticate(this)}
         spotifyAuthenticator.authenticate(this)
+        binding.topFive_View.adapter = TopSongAdapter(topSongs)
+
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -211,7 +211,7 @@ class SpotifyAuthenticator(private val clientId: String, private val redirectUri
         }
 
         val request = Request.Builder()
-            .url("https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5")
+            .url("https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10")
             .addHeader("Authorization", "Bearer $accessToken")
             .build()
 
@@ -237,7 +237,7 @@ class SpotifyAuthenticator(private val clientId: String, private val redirectUri
         }
 
         val request = Request.Builder()
-            .url("https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=5")
+            .url("https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=10")
             .addHeader("Authorization", "Bearer $accessToken")
             .build()
 
