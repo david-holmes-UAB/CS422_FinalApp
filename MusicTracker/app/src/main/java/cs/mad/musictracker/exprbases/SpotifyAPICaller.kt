@@ -1,115 +1,15 @@
-package cs.mad.musictracker
+package cs.mad.musictracker.exprbases
 
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-
+import android.util.Log
 import com.spotify.sdk.android.auth.AuthorizationClient
-import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
+import com.spotify.sdk.android.auth.LoginActivity
+import cs.mad.musictracker.MainActivity
 
-import android.util.Log;
-import cs.mad.musictracker.exprbases.SpotifyAuthenticator
-import cs.mad.musictracker.exprbases.SpotifyConnector
-import cs.mad.musictracker.databinding.ActivityMainBinding
+class SpotifyAPICaller() {
 
-//import kotlin.collections.joinToString
-
-
-class MainActivity : AppCompatActivity() {
-
-    //private lateinit var binding: ActivityMainBinding
-    private lateinit var spotifyConnector: SpotifyConnector
-    private lateinit var spotifyAuthenticator: SpotifyAuthenticator
-    //private lateinit var otherBinding: FragmentHomeBinding
-    private lateinit var binding: ActivityMainBinding
-    data class userKeys (
-        val clientId: String,
-        val redirectUri: String,
-        val clientSecret: String
-        )
-    val progKeys = userKeys(
-        clientId = "671cc4720b4f420397ecd146b7eb09b1",
-        redirectUri = "https://com.spotify.android.spotifysdkkotlindemo/callback",
-        clientSecret = "828c4238ce8c4d6ea15eb48b632d00f0"
-    )
-
-
-
-
-    data class TopSong(
-        val track: String,
-        val trackName: String,
-        val album: String,
-        val albumName: String,
-        val albumImage: String,
-        val artist: String
-    )
-
-   data class TopArtist(
-       val artist: String,
-       val artistName: String,
-       val artistImage: String,
-       val artistGenres: String
-   ) {
-       override fun toString(): String {
-           return "Artist Name: $artistName\nArtist Image: $artistImage\nArtist Genres: $artistGenres\n"
-       }
-   }
-
-    val topSongs = mutableListOf<TopSong>()
-    val topArtists = mutableListOf<TopArtist>()
-
-    //val fullTop = mutableListOf<TopSong>()
-
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        /*
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val navView: BottomNavigationView = binding.navView
-
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-
-        // Home should display a normal welcome screen (populated by user data?)
-        // Users (nav_dashboard) should display aa list of linked profiles with an option to add another (maybe?)
-        // Search (nav_notifications) lets a user search an artist
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-             */
-        super.onCreate(savedInstanceState)
-        //otherBinding = FragmentHomeBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
-
-        //spotifyConnector = SpotifyConnector(this, "671cc4720b4f420397ecd146b7eb09b1", "https://com.spotify.android.spotifysdkkotlindemo/callback")
-
-        spotifyAuthenticator = SpotifyAuthenticator(clientId, redirectUri)
-
-        // Authenticate the user
-        //val auth: View = findViewById(R.id.authButton)
-        //auth.setOnClickListener {spotifyAuthenticator.authenticate(this)}
-        spotifyAuthenticator.authenticate(this)
-        //otherBinding.topFiveView.adapter = TopSongAdapter(topSongs)
-
-
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Handle the authorization response
-        if (requestCode == REQUEST_CODE) {
+    fun onActivityResult(requestCode: Int, resultCode:Int, data:Intent?) {
+        if (requestCode == LoginActivity.REQUEST_CODE) {
             Log.i("inside onActivityResult", "WE ARE HERE")
             Log.i("request code", requestCode.toString())
             val response = AuthorizationClient.getResponse(resultCode, data)
@@ -180,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                             track.getJSONArray("artists").getJSONObject(0).getString("name")
 
                         // Create a TopSong object and add it to the list
-                        val topSong = TopSong(
+                        val topSong = MainActivity.TopSong(
                             track = track.toString(),
                             trackName = trackName,
                             album = album.toString(),
@@ -215,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         // Create a TopArtist object and add it to the list
-                        val topArtist = TopArtist(
+                        val topArtist = MainActivity.TopArtist(
                             artist = artist.toString(),
                             artistName = artistName,
                             artistImage = artistImage,
@@ -243,28 +143,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    /**
-    fun retTopSongs(): List<TopSong> {
-        return topSongs
-    }
-    */
-
-    fun printPlaylists(playlists: List<String>) {
-        for (i in 0 until playlists.size) {
-            println(playlists[i])
-        }
-    }
-}
-// Below functions are first provided steps from Spotify
-/*
-override fun onStart() {
-    super.onStart()
-    spotifyConnector.connectToSpotify("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL")
-}
-
-override fun onStop() {
-    super.onStop()
-    spotifyConnector.disconnect()
 
 }
-*/
