@@ -229,4 +229,30 @@ class SpotifyAuthenticator(private val clientId: String, private val redirectUri
             }
         })
     }
+    fun getTopArtists(accessToken: String?, callback: (JSONObject?) -> Unit) {
+        if (accessToken == null) {
+            Log.d("MainActivity", "Access token is null")
+            callback(null)
+            return
+        }
+
+        val request = Request.Builder()
+            .url("https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=5")
+            .addHeader("Authorization", "Bearer $accessToken")
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                // Handle network error
+                Log.i("getTopArtists", "failure")
+                callback(null)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseJson = JSONObject(response.body?.string()!!)
+                Log.d("GET TOP ARTISTS", "top artists: $responseJson")
+                callback(responseJson)
+            }
+        })
+    }
 }

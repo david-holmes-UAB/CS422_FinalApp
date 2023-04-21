@@ -10,6 +10,7 @@ import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
 import android.util.Log;
 import cs.mad.musictracker.bases.SpotifyAuthenticator
 import cs.mad.musictracker.bases.SpotifyConnector
+//import kotlin.collections.joinToString
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +33,19 @@ class MainActivity : AppCompatActivity() {
         val artist: String
     )
 
+   data class TopArtist(
+       val artist: String,
+       val artistName: String,
+       val artistImage: String,
+       val artistGenres: String
+   ) {
+       override fun toString(): String {
+           return "Artist Name: $artistName\nArtist Image: $artistImage\nArtist Genres: $artistGenres\n"
+       }
+   }
+
     val topSongs = mutableListOf<TopSong>()
+    val topArtists = mutableListOf<TopArtist>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             println("Access token: $accessToken")
 
             // API CALLS
-
             // GET PLAYLISTS
             spotifyAuthenticator.getUserPlaylists(accessToken) { response ->
                 if (response != null) {
@@ -107,12 +119,10 @@ class MainActivity : AppCompatActivity() {
                 //makeAPICalls(accessToken)
             }
 
-
             while (playlistIds.isEmpty()) {
                 println("inside while")
                 Thread.sleep(1000)
             }
-
 
             // GET PLAYLIST IDs
             for (i in 0 until playlistIds.size) {
@@ -127,7 +137,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
 
             // GET TOP TRACKS
             spotifyAuthenticator.getTopTracks(accessToken) { response ->
@@ -162,19 +171,41 @@ class MainActivity : AppCompatActivity() {
                     for (topSong in topSongs) {
                         Log.d("MainActivity4", topSong.toString())
                     }
-
-                    // printing
-                    /*
-                    topSongs.forEach { topSong ->
-                        println("Track: ${topSong.trackName}")
-                        println("Album: ${topSong.albumName}")
-                        println("Album Image: ${topSong.albumImage}")
-                        println("Artist: ${topSong.artist}")
-                        println("------123456789---------")
-                    }
-                     */
                 } else {
                     println("Error: Unable to get top tracks")
+                }
+            }
+
+            spotifyAuthenticator.getTopArtists(accessToken) { response ->
+                // Handle the JSON response
+                if (response != null) {
+                    val items = response.getJSONArray("items")
+                    for (i in 0 until items.length()) {
+                        val artist = items.getJSONObject(i)
+                        val artistName = artist.getString("name")
+                        val artistImage = artist.getJSONArray("images").getJSONObject(0).getString("url")
+                        val genresArray = artist.optJSONArray("genres")
+                        val artistGenres = if (genresArray != null && genresArray.length() > 0) {
+                            genresArray.getString(0)
+                        } else {
+                            ""
+                        }
+
+                        // Create a TopArtist object and add it to the list
+                        val topArtist = TopArtist(
+                            artist = artist.toString(),
+                            artistName = artistName,
+                            artistImage = artistImage,
+                            artistGenres = artistGenres
+                        )
+                        topArtists.add(topArtist)
+                    }
+
+                    for (topArtist in topArtists) {
+                        Log.d("MainActivity565658", topArtist.artistImage.toString())
+                    }
+                } else {
+                    println("Error: Unable to get top artists")
                 }
             }
             spotifyAuthenticator.disconnect()
