@@ -8,6 +8,7 @@ import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
 
 import android.util.Log;
+import android.view.View
 import cs.mad.musictracker.bases.SpotifyAuthenticator
 import cs.mad.musictracker.bases.SpotifyConnector
 
@@ -66,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         spotifyAuthenticator = SpotifyAuthenticator(clientId, redirectUri)
 
         // Authenticate the user
+        //val auth: View = findViewById(R.id.authButton)
+        //auth.setOnClickListener {spotifyAuthenticator.authenticate(this)}
         spotifyAuthenticator.authenticate(this)
     }
 

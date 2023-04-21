@@ -79,6 +79,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.room:room-ktx:2.5.1'
     implementation fileTree(dir: 'C:\\Users\\leeda\\Downloads\\android-sdk-master\\android-sdk-master\\app-remote-lib', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: 'C:\\Users\\dmhol\\Documents\\GitHub\\android-sdk-0.7.2-appremote_v1.2.3-auth\\app-remote-lib', include: ['*.aar', '*.jar'], exclude: [])
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
