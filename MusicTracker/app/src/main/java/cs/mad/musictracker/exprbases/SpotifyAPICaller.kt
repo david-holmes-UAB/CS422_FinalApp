@@ -4,9 +4,12 @@ import android.content.Intent
 import android.util.Log
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.LoginActivity
-import cs.mad.musictracker.MainActivity
+import cs.mad.musictracker.MainActivity.userKeys
+import cs.mad.musictracker.exprbases.SpotifyAuthenticator
+import cs.mad.musictracker.exprbases.SpotifyConnector
 
-class SpotifyAPICaller() {
+class SpotifyAPICaller(authKeys: userKeys) {
+    private var myKeys = authKeys
 
     fun onActivityResult(requestCode: Int, resultCode:Int, data:Intent?) {
         if (requestCode == LoginActivity.REQUEST_CODE) {

@@ -32,10 +32,7 @@ class MainActivity : AppCompatActivity() {
         redirectUri = "https://com.spotify.android.spotifysdkkotlindemo/callback",
         clientSecret = "828c4238ce8c4d6ea15eb48b632d00f0"
     )
-
-
-
-
+    
     data class TopSong(
         val track: String,
         val trackName: String,

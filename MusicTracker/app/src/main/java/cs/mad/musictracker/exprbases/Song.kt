@@ -23,5 +23,9 @@ interface SongDao {
     suspend fun insertAll(songs: List<Song>)
     @Update
     suspend fun update(songs: List<Song>)
+    @Delete
+    suspend fun delete(songs: List<Song>)
+    @Query ("delete from Songs")
+    suspend fun deleteAll()
 }
 
