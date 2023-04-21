@@ -1,4 +1,4 @@
-package cs.mad.musictracker
+package cs.mad.musictracker.bases
 
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.sdk.android.auth.AuthorizationClient

@@ -1,4 +1,4 @@
-package cs.mad.musictracker
+package cs.mad.musictracker.bases
 
 import android.content.Context
 import android.util.Log

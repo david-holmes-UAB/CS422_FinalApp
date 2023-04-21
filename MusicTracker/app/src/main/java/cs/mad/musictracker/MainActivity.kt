@@ -1,30 +1,15 @@
 package cs.mad.musictracker
 
-import android.app.AuthenticationRequiredException
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import cs.mad.musictracker.databinding.ActivityMainBinding
-
-import com.spotify.android.appremote.api.ConnectionParams
-import com.spotify.android.appremote.api.Connector;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
-
-import com.spotify.protocol.client.Subscription;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.protocol.types.Track;
 
 import com.spotify.sdk.android.auth.AuthorizationClient
-import com.spotify.sdk.android.auth.AuthorizationRequest
-import com.spotify.sdk.android.auth.AuthorizationResponse
 import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
 
 import android.util.Log;
-import android.widget.Button
-import android.net.Uri
-import com.spotify.sdk.android.auth.LoginActivity
+import cs.mad.musictracker.bases.SpotifyAuthenticator
+import cs.mad.musictracker.bases.SpotifyConnector
 
 
 class MainActivity : AppCompatActivity() {
