@@ -17,6 +17,7 @@ class TopSongAdapter(topSongs: List<TopSong>) : RecyclerView.Adapter<TopSongAdap
         ViewHolder(SongObjBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        println("HEY! This should print a number: " + topSongs.size)
         val song = topSongs[position]
         // (list (obj (pic, title), ...)) list[x].pic => input, list[x].title => input
         holder.binding.songTitle.text = song.trackName

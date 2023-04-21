@@ -47,4 +47,26 @@
         app:srcCompat="@drawable/mt_ic100"
         android:background="@drawable/circle_button"/>
 
+    <!--Title for top 5 songs-->
+    <TextView
+        android:id="@+id/topFiveTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/nav_host_fragment_activity_main"
+        android:padding="11dp"
+        android:text="Your Top Five Songs:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <!--Show top 5 songs-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/topFiveView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/topFiveTitle"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/song_obj"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spotifyConnector: SpotifyConnector
     private lateinit var spotifyAuthenticator: SpotifyAuthenticator
     //private lateinit var otherBinding: FragmentHomeBinding
+    private lateinit var binding: ActivityMainBinding
 
 
     data class TopSong(
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     val topSongs = mutableListOf<TopSong>()
     val topArtists = mutableListOf<TopArtist>()
 
-    val fullTop = mutableListOf<TopSong>()
+    //val fullTop = mutableListOf<TopSong>()
 
 
 
@@ -227,16 +228,23 @@ class MainActivity : AppCompatActivity() {
                     println("Error: Unable to get top artists")
                 }
             }
+            /*
             for (topSong in topSongs) {
                 fullTop.add(topSong)
             }
+             */
             spotifyAuthenticator.disconnect()
+            /*Thread.sleep(1000)
+            //otherBinding = FragmentHomeBinding.inflate(layoutInflater)
+            binding = ActivityMainBinding.inflate(layoutInflater)*/
+
         }
     }
-
+    /**
     fun retTopSongs(): List<TopSong> {
         return topSongs
     }
+    */
 
     fun printPlaylists(playlists: List<String>) {
         for (i in 0 until playlists.size) {

@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        /**
         val topSong1 = TopSong(
             track = "lollmao",
             trackName = "Father Stretch My Hands Pt. 1",
@@ -58,6 +59,7 @@ class HomeFragment : Fragment() {
         val topSongs: List<TopSong> = mutableListOf(topSong1, topSong2, topSong3)
         _binding!!.topFiveView.adapter = TopSongAdapter(topSongs)
         println("This should print:" + topSongs.size)
+        */
 
         /*val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
