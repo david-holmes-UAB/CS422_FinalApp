@@ -15,5 +15,5 @@
         android:layout_marginTop="@+id/song_cover"
         android:text="Song Title"
         android:textColor="@color/white"
-        android:textSize="11sp"/>
+        android:textSize="12sp"/>
 </LinearLayout>

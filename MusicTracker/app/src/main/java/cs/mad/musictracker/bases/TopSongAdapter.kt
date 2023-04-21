@@ -2,7 +2,6 @@ package cs.mad.musictracker.bases
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import cs.mad.musictracker.MainActivity.TopSong
 import cs.mad.musictracker.databinding.SongObjBinding
@@ -20,11 +19,15 @@ class TopSongAdapter(topSongs: List<TopSong>) : RecyclerView.Adapter<TopSongAdap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val song = topSongs[position]
         // (list (obj (pic, title), ...)) list[x].pic => input, list[x].title => input
-        holder.binding.songCover.drawable = song.albumImage
-
+        holder.binding.songTitle.text = song.trackName
+        val songImg = song.albumImage
+        Glide.with(holder.itemView.context)
+            .load(songImg)
+            .centerCrop()
+            .into(holder.binding.songCover)
     }
 
-    override fun getItemCount(): Int {
-        return songs.size
+    override fun getItemCount(  ): Int {
+        return topSongs.size
     }
 }

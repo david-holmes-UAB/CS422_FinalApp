@@ -19,7 +19,7 @@
 
     <!--Title for top 5 songs-->
     <TextView
-        android:id="@+id/topFive_title"
+        android:id="@+id/topFiveTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/greeting"
@@ -30,14 +30,13 @@
         android:textStyle="bold"/>
     <!--Show top 5 songs-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/topFive_View"
+        android:id="@+id/topFiveView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/topFive_title"
+        app:layout_constraintTop_toBottomOf="@+id/topFiveTitle"
         android:layout_margin="5dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/song_obj"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
